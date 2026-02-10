@@ -19,7 +19,8 @@
 1. Gerar a chave da aplicação:
    - `php artisan key:generate`
 1. Rodar migrations e seed:
-   - `php artisan migrate --seed`
+   - `php artisan migrate`
+   - `php artisan db:seed`
 1. Subir a API:
    - `php artisan serve`
 
@@ -35,7 +36,7 @@ Credenciais de seed:
 1. Instalar dependências:
    - `npm install`
 1. Subir o app:
-   - `ng serve`
+   - `npm start`
 
 Frontend disponível em `http://localhost:4200` e API em `http://localhost:8000`.
 
@@ -45,8 +46,8 @@ O projeto está configurado para MySQL. Ajuste as credenciais no `.env` se neces
 
 ## Screenshots
 ![Home](frontend/public/img/home.png)
-![Dashboard](frontend/public/img/Home-Dashboard.png)
 ![Login](frontend/public/img/Login.png)
+![Dashboard](frontend/public/img/Home-Dashboard.png)
 ![Criar Conta](frontend/public/img/CreateAccount.png)
 ![Produtos Admin](frontend/public/img/Admin-Products.png)
 ![Adicionar Produto](frontend/public/img/Add-Products.png)
