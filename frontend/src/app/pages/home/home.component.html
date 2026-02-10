@@ -1,0 +1,80 @@
+<div class="home">
+  <section class="hero">
+    <div class="hero-text">
+      <span class="pill">Farmácia Online</span>
+      <h1>Gestão de produtos e estoque.</h1>
+      <p>Visualize os produtos em tempo real, filtre por categoria e acompanhe preços com um dashboard simples e elegante.</p>
+      <div class="hero-actions" *ngIf="!authService.isAuthenticated()">
+        <a routerLink="/login" class="btn solid">Entrar</a>
+        <a routerLink="/register" class="btn ghost">Criar conta</a>
+      </div>
+      <div class="hero-actions" *ngIf="authService.isAuthenticated()">
+        <a routerLink="/produtos" class="btn solid">Ver produtos</a>
+        <a routerLink="/cadastrar" class="btn ghost">Cadastrar</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="metric">
+        <h3>Produtos</h3>
+        <p>{{ produtos.length }}</p>
+        <span>Total cadastrados</span>
+      </div>
+      <div class="metric">
+        <h3>Destaques</h3>
+        <p>{{ produtosDestaque.length }}</p>
+        <span>Selecionados</span>
+      </div>
+      <div class="metric">
+        <h3>Catálogo</h3>
+        <p>Atualizado</p>
+        <span>Dados em tempo real</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="dashboard" *ngIf="authService.isAuthenticated()">
+    <div class="cards">
+      <div class="card blue">
+        <h3>Pedidos</h3>
+        <p>0</p>
+        <small>Hoje</small>
+      </div>
+      <div class="card green">
+        <h3>Estoque</h3>
+        <p>Estável</p>
+        <small>Sem alertas</small>
+      </div>
+      <div class="card orange">
+        <h3>Faturamento</h3>
+        <p>R$ 0</p>
+        <small>Este mês</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="catalog">
+    <div class="catalog-header">
+      <div>
+        <h2>Produtos em destaque</h2>
+        <p>Explore alguns dos itens mais recentes do catálogo.</p>
+      </div>
+      <a routerLink="/produtos" class="btn ghost">Ver todos</a>
+    </div>
+
+    <div class="grid" *ngIf="produtos?.length; else vazio">
+      <article class="product-card" *ngFor="let p of produtos">
+        <div class="badge">{{ p.categoria || 'Geral' }}</div>
+        <h3>{{ p.nome }}</h3>
+        <p class="desc">{{ p.descricao || 'Descrição não informada.' }}</p>
+        <div class="price">{{ p.preco | currency:'BRL' }}</div>
+      </article>
+    </div>
+
+    <ng-template #vazio>
+      <div class="empty-state">
+        <h3>Nenhum produto cadastrado</h3>
+        <p>Adicione o primeiro produto para começar.</p>
+      </div>
+    </ng-template>
+  </section>
+</div>

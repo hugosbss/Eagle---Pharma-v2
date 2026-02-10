@@ -1,0 +1,23 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Criar conta</h2>
+    <p class="subtitle">Registre-se para acessar o sistema.</p>
+
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="name" placeholder="Seu nome" />
+
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" placeholder="voce@email.com" />
+
+    <label>Senha</label>
+    <input type="password" [(ngModel)]="password" placeholder="Crie uma senha" />
+
+    <button class="btn primary" (click)="criarConta()">Criar conta</button>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <p class="link">
+      Já possui conta? <a routerLink="/login">Entrar</a>
+    </p>
+  </div>
+</div>

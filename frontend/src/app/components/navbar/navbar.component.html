@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <a routerLink="/" class="brand">
+    <span class="brand-mark">Eagle</span>
+    <span class="brand-sub">Pharma</span>
+  </a>
+
+  <div class="search">
+    <input
+      type="text"
+      placeholder="Buscar produtos, vitaminas, medicamentos..."
+      [(ngModel)]="termoBusca"
+      name="busca"
+      (keyup.enter)="buscar()"
+    />
+    <button (click)="buscar()">Buscar</button>
+  </div>
+
+  <div class="actions">
+    <div class="home-menu">
+      <a routerLink="/" class="link">Home</a>
+      <div class="dropdown" *ngIf="authService.isAuthenticated()">
+        <button class="caret" type="button" aria-label="Abrir menu"></button>
+        <div class="menu">
+          <a routerLink="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+    <a routerLink="/produtos" class="link" *ngIf="authService.isAuthenticated()">Produtos</a>
+    <a routerLink="/cadastrar" class="link" *ngIf="authService.isAuthenticated()">Cadastrar</a>
+    <a routerLink="/login" class="btn ghost" *ngIf="!authService.isAuthenticated()">Entrar</a>
+    <a routerLink="/register" class="btn solid" *ngIf="!authService.isAuthenticated()">Criar conta</a>
+  </div>
+</nav>

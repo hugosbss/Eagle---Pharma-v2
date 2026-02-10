@@ -1,0 +1,232 @@
+.page-container {
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cadastro,
+.latest {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.page-header h2 {
+  margin-bottom: 20px;
+}
+
+.cadastro h3,
+.latest h3 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.price {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.categoria {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.form-cadastro.estilizado {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.linha {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f7f7f7;
+}
+
+.form-group textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn.salvar {
+  background: #388e3c;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn.cancelar {
+  background: #e53935;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.erro {
+  color: #dc2626;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px){
+  .ver-todos {
+    padding: 0.5rem 0rem!important;
+  }
+}
+
+.ver-todos {
+  display: inline-block;
+  background: #1976d2;
+  color: #fff !important;
+  padding: 0.5rem 1.0rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px #1976d220;
+  transition: background 0.2s, box-shadow 0.2s;
+  margin-left: auto;
+}
+
+.ver-todos:hover, .ver-todos:focus {
+  background: #125ea2;
+  box-shadow: 0 4px 16px #1976d240;
+  text-decoration: none;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 15px;
+  }
+
+  .form-cadastro.estilizado {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+  }
+
+  .linha {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .btn.salvar,
+  .btn.cancelar {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 0.95rem;
+  }
+
+  .desc {
+    font-size: 0.85rem;
+  }
+
+  .categoria {
+    font-size: 0.8rem;
+  }
+
+  .ver-todos {
+    display: block;
+    text-align: center;
+    margin: 1rem auto 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header h2 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .cadastro h3,
+  .latest h3 {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

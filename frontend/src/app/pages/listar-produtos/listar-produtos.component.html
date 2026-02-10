@@ -1,0 +1,114 @@
+<div class="page-container">
+  <nav class="navbar">
+    <h2>Gerenciamento de Produtos</h2>
+    <input
+      type="text"
+      placeholder="Buscar produto..."
+      [(ngModel)]="busca"
+      class="filtro-navbar"
+      (keyup.enter)="buscar()"
+    />
+    <button class="btn filtro" (click)="buscar()">Buscar</button>
+  </nav>
+
+  <section class="filtros">
+    <div class="filtro-item">
+      <label>Categoria</label>
+      <input type="text" [(ngModel)]="categoria" placeholder="Ex: vitaminas" />
+    </div>
+    <div class="filtro-item">
+      <label>Preço mín.</label>
+      <input type="number" [(ngModel)]="minPreco" placeholder="0" />
+    </div>
+    <div class="filtro-item">
+      <label>Preço máx.</label>
+      <input type="number" [(ngModel)]="maxPreco" placeholder="200" />
+    </div>
+    <div class="filtro-item">
+      <label>Ordenar por</label>
+      <select [(ngModel)]="sortBy">
+        <option value="created_at">Mais recentes</option>
+        <option value="nome">Nome</option>
+        <option value="preco">Preço</option>
+      </select>
+    </div>
+    <div class="filtro-item">
+      <label>Direção</label>
+      <select [(ngModel)]="sortDir">
+        <option value="desc">Desc</option>
+        <option value="asc">Asc</option>
+      </select>
+    </div>
+    <div class="filtro-item">
+      <label>Por página</label>
+      <select [(ngModel)]="produtosPorPagina">
+        <option [ngValue]="5">5</option>
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="20">20</option>
+      </select>
+    </div>
+    <button class="btn aplicar" (click)="buscar()">Aplicar filtros</button>
+    <button class="btn limpar" (click)="limparFiltros()">Limpar filtros</button>
+  </section>
+
+  <p class="erro" *ngIf="errorMessage">{{ errorMessage }}</p>
+  <section class="produtos-lista">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of produtos">
+          <td>{{ p.id }}</td>
+          <td>{{ p.nome }}</td>
+          <td>{{ p.preco | currency:'BRL' }}</td>
+          <td>{{ p.categoria || '-' }}</td>
+          <td class="acoes">
+            <button class="btn editar" (click)="abrirModalEditar(p)">Editar</button>
+            <button class="btn excluir" (click)="abrirModalExcluir(p)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="paginacao">
+      <button (click)="mudarPagina(paginaAtual - 1)" [disabled]="paginaAtual === 1">Anterior</button>
+      <span>Página {{ paginaAtual }} de {{ totalPaginas }} | Total: {{ totalItens }}</span>
+      <button (click)="mudarPagina(paginaAtual + 1)" [disabled]="paginaAtual === totalPaginas">Próxima</button>
+    </div>
+  </section>
+
+  <div class="modal-backdrop" *ngIf="modalEditar || modalExcluir">
+    <div class="modal">
+      <ng-container *ngIf="modalEditar">
+        <h2>Editar Produto</h2>
+        <label>Nome</label>
+        <input [(ngModel)]="produtoSelecionado!.nome" />
+        <label>Preço</label>
+        <input type="number" [(ngModel)]="produtoSelecionado!.preco" />
+        <label>Categoria</label>
+        <input [(ngModel)]="produtoSelecionado!.categoria" />
+
+        <div class="acoes">
+          <button (click)="salvarProduto()" class="btn salvar">Salvar</button>
+          <button (click)="fecharModais()" class="btn cancelar">Cancelar</button>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="modalExcluir">
+        <h2>Confirmar Exclusão</h2>
+        <p>Tem certeza que deseja excluir <b>{{ produtoSelecionado?.nome }}</b>?</p>
+        <div class="acoes">
+          <button (click)="confirmarExclusao()" class="btn excluir">Sim, excluir</button>
+          <button (click)="fecharModais()" class="btn cancelar">Cancelar</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
